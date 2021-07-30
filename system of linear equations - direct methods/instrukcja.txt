@@ -1,0 +1,36 @@
+We wszystkich przypadkach wzorcowy wektor rozwiazan x był wypełniany samymi jedynkami.
+
+========================================================================================================================
+
+Aby uruchomić metodę eliminacji Gaussa dla pojedynczej precyzji:
+    python gauss_single_precision.py n mode
+gdzie n to rozmiar macierzy (n x n), a mode to rodzaj macierzy A (1 -> macierz A z zadania 1-szego, 2 -> macierz A
+z zadania 2, w tym programie nie zaimplementowano zadania z macierza z zadania 3)
+Przykładowe wywołanie:
+    python gauss_single_precision.py 10 2 -> wyznaczane rozwiązanie układu z zadania 2 dla macierzy A o rozmiarze 10x10
+
+Wyniki zapisują się do pliku gauss_single_precision.txt
+
+========================================================================================================================
+
+Aby uruchomić metodę eliminacji Gaussa dla podwójnej precyzji:
+    python gauss_double_precision.py n mode
+gdzie n to rozmiar macierzy (n x n), a mode to rodzaj macierzy A (1 -> macierz A z zadania 1-szego, 2 -> macierz A
+z zadania 2, 3 -> macierz A z zadania 3).
+Przykładowe wywołanie:
+    python gauss_double_precision.py 10 3 -> wyznaczane rozwiązanie układu z zadania 3 dla macierzy A o rozmiarze 10x10
+
+Przy wyznaczaniu rozwiązania układu z mode = 3 wyliczany jest także czas trwania metody eliminacji Gaussa
+Wyniki zapisują się do pliku gauss_double_precision.txt
+
+========================================================================================================================
+
+Aby uruchomić metodę Thomasa dla ukladu rownan z zadania 3
+(działającą na podstawowym floatcie Pythonowym podwójnej precyzji):
+    python thomas_algorithm.py n
+gdzie n to rozmiar macierzy (n x n).
+Przykładowe wywołanie:
+    python thomas_algorithm.py 5 -> wyznaczane rozwiązanie układu z zadania 3 dla macierzy A o rozmiarze 5x5
+
+Do wyników dodawany jest czas trwania metody Thomasa.
+Wyniki zapisują się do pliku thomas_algorithm.txt

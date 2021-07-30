@@ -1,0 +1,10 @@
+Aby uruchomic programy wystarczy w terminalu uzyc nastepujacej komendy
+
+python spline_interpolation.py x y
+
+gdzie x i y to zakres liczby wezlow dla ktorego zostanie dokonana interpolacja funkcji dla funkcji sklejanych 2 i 3
+stopnia oraz wszystkich warunkow brzegowych podanych w sprawozdaniu.
+Przykladowo dla python spline_interpolation.py 2 75 otrzymamy wyniki interpolacji zapisane do pliku wyniki_interpolacji.txt
+oraz wykresy zapisane do odpowiadajacym im podfolderom w folderze plots
+
+Plik wyniki_interpolacji.txt nie jest nadpisywany. Wszystkie wyniki uruchomienia programow sa dopisywane na koniec pliku

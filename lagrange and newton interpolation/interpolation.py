@@ -3,6 +3,17 @@ import math
 import numpy
 import matplotlib.pyplot as plot
 
+def createPlotAndWriteToReport(xplt, yplt, x, y, plot_label, plot_file_name, report_label, plot_legend):
+    plot.plot(x, y, 'ro', xplt, yplt, 'b-', xplt, valuesOfFunctionInNodes(xplt), 'm-')
+    plot.xlabel('x')
+    plot.ylabel('y')
+    plot.title(plot_label)
+    plot.legend(plot_legend, loc='lower center', fontsize='x-small')
+    plot.ylim(-4, 9)
+    plot.savefig(plot_file_name)
+    plot.close()
+
+    report.write(report_label)
 
 # Lagrange and Newton Interpolation for f(x) = exp(-2sin(2x)) + 2cos(2x), [-pi, 2pi]
 
@@ -99,67 +110,46 @@ def lagrangeInterpolationChebyshev(nodes_number):
     nodes = chebyshevNodesFromMinusPiTo2Pi(nodes_number)
     (x, y, xplt, yplt, max_err, sqr_err) = lagrangeInterpolation(nodes)
 
-    plot.plot(x, y, 'ro', xplt, yplt, 'b-', xplt, valuesOfFunctionInNodes(xplt), 'm-')
-    plot.xlabel('x')
-    plot.ylabel('y')
-    plot.title('Interpolacja Lagrange`a używająca ' + str(nodes_number) + ' węzłów Czebyszewa')
-    plot.legend(('Węzły', 'wielomian Lagrange`a', 'zadana funkcja f(x)'), loc='lower center', fontsize='x-small')
-    plot.ylim(-4, 9)
-    plot.savefig('plots/lagrange_chebyshev_plot_%d' % nodes_number)
-    plot.close()
-
-    report.write("Lagrange %d wezlow Czebyszewa:" % nodes_number + "         max_error =%10.3E" % max_err +
-                 " sqr_err =%10.3E\n" % sqr_err)
+    createPlotAndWriteToReport(xplt, yplt, x, y,
+     'Interpolacja Lagrange`a używająca ' + str(nodes_number) + ' węzłów Czebyszewa',
+     'plots/lagrange_chebyshev_plot_%d' % nodes_number,
+     "Lagrange %d wezlow Czebyszewa:" % nodes_number + "         max_error =%10.3E" % max_err +
+                 " sqr_err =%10.3E\n" % sqr_err,
+     ('Węzły', 'wielomian Lagrange`a', 'zadana funkcja f(x)'))  
 
 
 def lagrangeInterpolationEquallySpaced(nodes_number):
     nodes = equallySpacedNodesFromMinusPiTo2Pi(nodes_number)
     (x, y, xplt, yplt, max_err, sqr_err) = lagrangeInterpolation(nodes)
 
-    plot.plot(x, y, 'ro', xplt, yplt, 'b-', xplt, valuesOfFunctionInNodes(xplt), 'm-')
-    plot.xlabel('x')
-    plot.ylabel('y')
-    plot.title('Interpolacja Lagrange`a używająca ' + str(nodes_number) + ' równoodległych węzłów')
-    plot.legend(('Węzły', 'wielomian Lagrange`a', 'zadana funkcja f(x)'), loc='lower center', fontsize='x-small')
-    plot.ylim(-4, 9)
-    plot.savefig('plots/lagrange_eqspaced_plot_%d' % nodes_number)
-    plot.close()
+    createPlotAndWriteToReport(xplt, yplt, x, y,
+     'Interpolacja Lagrange`a używająca ' + str(nodes_number) + ' równoodległych węzłów',
+     'plots/lagrange_eqspaced_plot_%d' % nodes_number,
+     "Lagrange %d rownoodleglych wezlow:" % nodes_number + "    max_error =%10.3E" % max_err +
+                 " sqr_err =%10.3E\n" % sqr_err,
+     ('Węzły', 'wielomian Lagrange`a', 'zadana funkcja f(x)'))  
 
-    report.write("Lagrange %d rownoodleglych wezlow:" % nodes_number + "    max_error =%10.3E" % max_err +
-                 " sqr_err =%10.3E\n" % sqr_err)
 
 def hermiteLagrangeInterpolationChebyshev(nodes_number):
     nodes = chebyshevNodesFromMinusPiTo2Pi(nodes_number)
     (x, y, xplt, yplt) = hermiteLagrangeInterpolation(nodes)
 
-    plot.plot(x, y, 'ro', xplt, yplt, 'b-', xplt, valuesOfFunctionInNodes(xplt), 'm-')
-    plot.xlabel('x')
-    plot.ylabel('y')
-    plot.title('Interpolacja Hermite Lagrange używająca ' + str(nodes_number) + ' węzłów Czebyszewa')
-    plot.legend(('Węzły', 'wielomian Hermite Lagrange', 'zadana funkcja f(x)'), loc='lower center', fontsize='x-small')
-    plot.ylim(-4, 9)
-    plot.savefig('plots/hermite_lagrange_chebyshev_plot_%d' % nodes_number)
-    plot.close()
-
-    report.write("Hermite Lagrange %d wezlow Czebyszewa:" % nodes_number)
-    #+ "         max_error =%10.3E" % max_err +" sqr_err =%10.3E\n" % sqr_err)
+    createPlotAndWriteToReport(xplt, yplt, x, y,
+     'Interpolacja Hermite Lagrange używająca ' + str(nodes_number) + ' węzłów Czebyszewa',
+     'plots/hermite_lagrange_chebyshev_plot_%d' % nodes_number,
+     "Hermite Lagrange %d wezlow Czebyszewa:" % nodes_number,
+     ('Węzły', 'wielomian Hermite Lagrange', 'zadana funkcja f(x)'))  
 
 
 def hermiteLagrangeInterpolationEquallySpaced(nodes_number):
     nodes = equallySpacedNodesFromMinusPiTo2Pi(nodes_number)
     (x, y, xplt, yplt) = hermiteLagrangeInterpolation(nodes)
 
-    plot.plot(x, y, 'ro', xplt, yplt, 'b-', xplt, valuesOfFunctionInNodes(xplt), 'm-')
-    plot.xlabel('x')
-    plot.ylabel('y')
-    plot.title('Interpolacja Hermite Lagrange używająca ' + str(nodes_number) + ' równoodległych węzłów')
-    plot.legend(('Węzły', 'wielomian Hermite Lagrange', 'zadana funkcja f(x)'), loc='lower center', fontsize='x-small')
-    plot.ylim(-4, 9)
-    plot.savefig('plots/hermite_lagrange_eqspaced_plot_%d' % nodes_number)
-    plot.close()
-
-    report.write("Hermite Lagrange %d rownoodleglych wezlow:" % nodes_number)
-    #+ "    max_error =%10.3E" % max_err + " sqr_err =%10.3E\n" % sqr_err)
+    createPlotAndWriteToReport(xplt, yplt, x, y,
+     'Interpolacja Hermite Lagrange używająca ' + str(nodes_number) + ' równoodległych węzłów',
+     'plots/hermite_lagrange_eqspaced_plot_%d' % nodes_number,
+     "Hermite Lagrange %d rownoodleglych wezlow:" % nodes_number,
+     ('Węzły', 'wielomian Hermite Lagrange', 'zadana funkcja f(x)'))  
 
 
 def newtonCoefficients(x, y):
@@ -245,17 +235,12 @@ def newtonInterpolationChebyshev(nodes_number):
     sqr_err = numpy.square(numpy.subtract(y_fun, yplt)).mean()
     sqr_err = math.sqrt(sqr_err)
 
-    plot.plot(x, y, 'ro', xplt, yplt, 'b-', xplt, valuesOfFunctionInNodes(xplt), 'm-')
-    plot.xlabel('x')
-    plot.ylabel('y')
-    plot.title('Interpolacja Newtona używająca ' + str(nodes_number) + ' węzłów Czebyszewa')
-    plot.legend(('Węzły', 'wielomian Newtona', 'zadana funkcja f(x)'), loc='lower center', fontsize='x-small')
-    plot.ylim(-4, 9)
-    plot.savefig('plots/newton_chebyshev_plot_%d' % nodes_number)
-    plot.close()
-
-    report.write("Newton %d wezlow Czebyszewa:" % nodes_number + "           max_error =%10.3E" % max_err +
-                 " sqr_err =%10.3E\n" % sqr_err)
+    createPlotAndWriteToReport(xplt, yplt, x, y,
+     'Interpolacja Newtona używająca ' + str(nodes_number) + ' węzłów Czebyszewa',
+     'plots/newton_chebyshev_plot_%d' % nodes_number,
+     "Newton %d wezlow Czebyszewa:" % nodes_number + "           max_error =%10.3E" % max_err +
+                 " sqr_err =%10.3E\n" % sqr_err,
+     ('Węzły', 'wielomian Newtona', 'zadana funkcja f(x)'))  
 
 
 def newtonInterpolationEquallySpaced(nodes_number):
@@ -268,17 +253,13 @@ def newtonInterpolationEquallySpaced(nodes_number):
     sqr_err = numpy.square(numpy.subtract(y_fun, yplt)).mean()
     sqr_err = math.sqrt(sqr_err)
 
-    plot.plot(x, y, 'ro', xplt, yplt, 'b-', xplt, valuesOfFunctionInNodes(xplt), 'm-')
-    plot.xlabel('x')
-    plot.ylabel('y')
-    plot.title('Interpolacja Newtona używająca ' + str(nodes_number) + ' równoodległych węzłów')
-    plot.legend(('Węzły', 'wielomian Newtona', 'zadana funkcja f(x)'), loc='lower center', fontsize='x-small')
-    plot.ylim(-4, 9)
-    plot.savefig('plots/newton_eqspaced_plot_%d' % nodes_number)
-    plot.close()
+    createPlotAndWriteToReport(xplt, yplt, x, y,
+     'Interpolacja Newtona używająca ' + str(nodes_number) + ' równoodległych węzłów',
+     'plots/newton_eqspaced_plot_%d' % nodes_number,
+     "Newton %d rownoodleglych wezlow:" % nodes_number + "     max_error =%10.3E" % max_err +
+                 " sqr_err =%10.3E\n" % sqr_err,
+     ('Węzły', 'wielomian Newtona', 'zadana funkcja f(x)'))  
 
-    report.write("Newton %d rownoodleglych wezlow:" % nodes_number + "     max_error =%10.3E" % max_err +
-                 " sqr_err =%10.3E\n" % sqr_err)
 
 def hermiteInterpolationChebyshev(nodes_number):
     arr = chebyshevNodesFromMinusPiTo2Pi(nodes_number)
@@ -294,17 +275,12 @@ def hermiteInterpolationChebyshev(nodes_number):
     sqr_err = numpy.square(numpy.subtract(y_fun, yplt)).mean()
     sqr_err = math.sqrt(sqr_err)
 
-    plot.plot(arr, y, 'ro', xplt, yplt, 'b-', xplt, valuesOfFunctionInNodes(xplt), 'm-')
-    plot.xlabel('x')
-    plot.ylabel('y')
-    plot.title('Interpolacja Hermite używająca ' + str(nodes_number) + ' węzłów Czebyszewa')
-    plot.legend(('Węzły', 'wielomian Hermite', 'zadana funkcja f(x)'), loc='lower center', fontsize='x-small')
-    plot.ylim(-4, 9)
-    plot.savefig('plots/hermite_chebyshev_plot_%d' % nodes_number)
-    plot.close()
-
-    report.write("Hermite %d wezlow Czebyszewa:" % nodes_number + "           max_error =%10.3E" % max_err +
-                 " sqr_err =%10.3E\n" % sqr_err)
+    createPlotAndWriteToReport(xplt, yplt, x, y,
+     'Interpolacja Hermite używająca ' + str(nodes_number) + ' węzłów Czebyszewa',
+     'plots/hermite_chebyshev_plot_%d' % nodes_number,
+     "Hermite %d wezlow Czebyszewa:" % nodes_number + "           max_error =%10.3E" % max_err +
+                 " sqr_err =%10.3E\n" % sqr_err,
+     ('Węzły', 'wielomian Hermite', 'zadana funkcja f(x)'))  
 
 
 def hermiteInterpolationEquallySpaced(nodes_number):
@@ -321,17 +297,12 @@ def hermiteInterpolationEquallySpaced(nodes_number):
     sqr_err = numpy.square(numpy.subtract(y_fun, yplt)).mean()
     sqr_err = math.sqrt(sqr_err)
 
-    plot.plot(arr, y, 'ro', xplt, yplt, 'b-', xplt, valuesOfFunctionInNodes(xplt), 'm-')
-    plot.xlabel('x')
-    plot.ylabel('y')
-    plot.title('Interpolacja Hermite używająca ' + str(nodes_number) + ' równoodległych węzłów')
-    plot.legend(('Węzły', 'wielomian Hermite', 'zadana funkcja f(x)'), loc='lower center', fontsize='x-small')
-    plot.ylim(-4, 9)
-    plot.savefig('plots/hermite_eqspaced_plot_%d' % nodes_number)
-    plot.close()
-
-    report.write("Hermite %d rownoodleglych wezlow:" % nodes_number + "     max_error =%10.3E" % max_err +
-                 " sqr_err =%10.3E\n" % sqr_err)
+    createPlotAndWriteToReport(xplt, yplt, x, y,
+     'Interpolacja Hermite używająca ' + str(nodes_number) + ' równoodległych węzłów',
+     'plots/hermite_eqspaced_plot_%d' % nodes_number,
+     "Hermite %d rownoodleglych wezlow:" % nodes_number + "     max_error =%10.3E" % max_err +
+                 " sqr_err =%10.3E\n" % sqr_err,
+     ('Węzły', 'wielomian Hermite', 'zadana funkcja f(x)'))  
 
 
 if __name__ == '__main__':
@@ -340,12 +311,12 @@ if __name__ == '__main__':
     for arg in range(int(sys.argv[1]), int(sys.argv[2]) + 1):
         num_of_nodes = arg
         report.write("=================== LICZBA WEZLOW: %d\n" % num_of_nodes)
-        #lagrangeInterpolationChebyshev(num_of_nodes)
-        #lagrangeInterpolationEquallySpaced(num_of_nodes)
-        #newtonInterpolationChebyshev(num_of_nodes)
-        #newtonInterpolationEquallySpaced(num_of_nodes)
-        #hermiteInterpolationChebyshev(num_of_nodes)
-        #hermiteInterpolationEquallySpaced(num_of_nodes)
+        lagrangeInterpolationChebyshev(num_of_nodes)
+        lagrangeInterpolationEquallySpaced(num_of_nodes)
+        newtonInterpolationChebyshev(num_of_nodes)
+        newtonInterpolationEquallySpaced(num_of_nodes)
+        hermiteInterpolationChebyshev(num_of_nodes)
+        hermiteInterpolationEquallySpaced(num_of_nodes)
         hermiteLagrangeInterpolationChebyshev(num_of_nodes)
         hermiteLagrangeInterpolationEquallySpaced(num_of_nodes)
         report.write('\n')

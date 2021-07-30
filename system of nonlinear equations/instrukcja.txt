@@ -1,0 +1,24 @@
+aby uruchomic obliczenia dla metody siecznych:
+    python secant_method.py ro mode
+gdzie ro - dokladnosc (np. 1e-6), mode - kryterium stopu func (|f(xi)| < ro) lub step (|x(i+1) - xi| < ro)
+przykladowe uruchomienie: python secant_method.py 1e-6 func
+wylicza liczbe iteracji oraz znalezione rozwiazanie dla zadanej dokladnosci ro i podanego kryterium stopu
+dla wszystkich mozliwych kombinacji punktow startowych opisanych w sprawozdaniu (0.7 i kolejno wszystkie
+z {0.6, 0.5, ..., -1} oraz -1 i kolejno wszystkie z {0.7, 0.6, 0.5, ..., -0.9})
+wyniki zapisywane do pliku metoda_siecznych.txt
+
+aby uruchomic obliczenia dla metody newtona:
+    python newton_raphson_method.py ro mode
+gdzie ro - dokladnosc (np. 1e-6), mode - kryterium stopu func (|f(xi)| < ro) lub step (|x(i+1) - xi| < ro)
+przykladowe uruchomienie: python newton_raphson_method.py 1e-6 func
+wylicza liczbe iteracji oraz znalezione rozwiazanie dla zadanej dokladnosci ro i podanego kryterium stopu
+dla wszystkich punktow startowych opisanych w sprawozdaniu ({-1, -0.9, ..., 0.6, 0.7})
+wyniki zapisywane do pliki metoda_newtona.txt
+
+aby uruchomic rozwiazanie zadanego ukladu rownan metoda newtona:
+    python nonlinear_system_newton.py ro mode
+gdzie ro - dokladnosc (np. 1e-6), mode - kryterium stopu func (||f(xi) < ro||) lub step (||x(i+1) - xi|| < ro)
+przykladowe uruchomienie: python nonlinear_system_newton.py 1e-6 step
+wypisuje najpierw wektor poczatkowy [x, y, z] a nastepnie rozwiazania ukladu rownan oraz liczbe iteracji lub blad, jesli
+przekroczono 1000 iteracji
+wyniki sa zapisywane do pliku uklad_rownan.txt

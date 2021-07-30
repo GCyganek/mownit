@@ -1,0 +1,16 @@
+Aby uruchomic programy wystarczy w terminalu uzyc nastepujacej komendy
+
+python approximation.py x y a b mode approx
+
+gdzie x i y to zakres liczby wezlow dla ktorego zostanie dokonana aproksymacja
+[a, b] to zakres f. bazowych wykorzystywanych w aproksymacji algebraicznej lub zakres stopni wielomianu trygonometrycznego
+aproksymujacego dla aproksymacji trygonometryczne. Aproksymacje wybieramy wpisujac w pole approx "alg" dla aproksymacji
+wielomianami algebraicznymi lub "tryg" dla aproksymacji trygonometrycznej. Wartosc pola mode rowna "all" przeprowadza
+aproksymacje dla wszystkich wartosci z [x, y] i [a, b], a "%3" aproksymacje dla tych wartosci, ktore sa podzielne przez 3
+(nie dotyczy [a, b] dla aproksymacji trygonometrycznej, tam brane sa zawsze pod uwage wszystkie stopnie wielomianu z [a, b])
+
+Przykladowo dla python approximation.py 7 75 3 8 %3 tryg otrzymamy wyniki aproksymacji trygonometrycznej dla wezlow
+9, 12, 15, ..., 72, 75 dla kazdego ze stopni wielomianu trygonometrycznego aproksymujacego 3, 4, 5, 6, 7, 8
+
+wykresy aproksymacji wielomianami algebraicznymi sa zapisywane w folderze "/monomials_plots", a aproksymacji
+trygonometrycznej w folderze "/trygonometric_plots"

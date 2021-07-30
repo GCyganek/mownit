@@ -1,0 +1,25 @@
+We wszystkich przypadkach zadany wektor rozwiazania x jest wypełniany samymi jedynkami.
+
+========================================================================================================================
+
+Aby uruchomić metodę Jacobiego:
+    python jacobi_method.py n cond ro
+gdzie n to rozmiar macierzy (n x n), a cond to rodzaj kryterium stopu (cond = 1 -> kryterium przyrostowe, cond = 2 ->
+kryterium residualne), ro to dokładność
+Przykładowe wywołanie:
+    python jacobi_method.py 100 1 1e-6 -> wyznaczane rozwiązanie układu dla macierzy A o rozmiarze 100x100, kryterium
+    przyrostowego i dokładności ro = 1e-6
+
+Wyniki zapisują się do pliku jacobi_method.txt
+
+========================================================================================================================
+
+Aby uruchomić metodę SOR:
+    python sor_method.py n cond ro omega
+gdzie n to rozmiar macierzy (n x n), a cond to rodzaj kryterium stopu (cond = 1 -> kryterium przyrostowe, cond = 2 ->
+kryterium residualne), ro to dokładność, a omega to omega ze wzoru itearcyjnego
+Przykładowe wywołanie:
+    python sor_method.py 100 2 1e-6 0.2 -> wyznaczane rozwiązanie układu dla macierzy A o rozmiarze 100x100, kryterium
+    residualnego, dokładności ro = 1e-6 i omegi = 0.2
+
+Wyniki zapisują się do pliku sor_method.txt
